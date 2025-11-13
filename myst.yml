@@ -1,0 +1,17 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: 8a478874-8f2f-4f8e-9b56-fd21507f0275
+  title: An affordable and adaptable educational escape room
+  # description:
+  keywords: [Escape room; Physics; Education; Instructable; Open Science; Open Hardware]
+  authors: 
+    - name: Freek Pols
+    - name: Koen Caspers
+  github: https://github.com/FreekPols/EscapeTheClassroom
+  # To autogenerate a Table of Contents, run "myst init --write-toc"
+site:
+  template: article-theme
+  # options:
+  #   favicon: favicon.ico
+  #   logo: site_logo.png
