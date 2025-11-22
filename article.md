@@ -19,26 +19,36 @@ https://www.instructables.com/id/Escaperoom
 # The design
 
 ## Outline of the escape room
-- box with buttons and lcd screen
-- puzzles to solve, input codes
-- indication of level of completion
-- hints should be possible, but not by asking teacher
-- timer
-- resistors
-- tea box, size of ...
+The idea of this educational escape room is to have students work together in small teams to solve a series of puzzles within a limited time frame (typically 45-60 minutes).
+For the puzzles of the physics escape room we were inspired by the ranking tasks by {cite:t}`OkumaMaloneyHieggelke2003`. 
+In these puzzles students rank variations of a physical situation on the basis of a (specified) physical quantity.
+To make it a true escape room puzzle, the students need to figure out first what the quantity is that needs to be ranked. 
+In most of these tasks, only four variations are given, hence we decided to use four numbered buttons for input.
+To decrease the chance of random guessing, we included a time penalty for wrong answers - including a buzzer and red led as feedback.
+When the students solve a puzzle correctly, a green led lights up, indicating their progress: each escape room consists of four levels/challenges.
+In the first escape room we designed, the students required the teacher's help to solve some of the puzzle.
+To minimize the teacher's involvement, we added a hint system to the escape room: by pressing a hint button, a hint is displayed on the LCD screen.
 
+## Game elements
+Although these activities can be entertaining as it introduces a game element to the learning environment, presented these just as activities may diminish the escape room as doing physics homework.
+Hence, we normally frame the escape room in a specific context, e.g., students in their final year have stolen the next week's test and want to trade these for their exams.
+You are standing for the vault door and need to solve the puzzles to open the vault.
+You only have 40 minutes before the head of the school returns from his teaching duties!
 
+When playing a game, their needs to be some prize for escaping the room.
+This can be anything from candy to extra points on the next test, to seeing the next week's test for one minute.
+The latter was done in one of our escape room: the students who escaped had already shown their abilities to pass the test, but were also so excited that they forgot all questions in the test that was presented to them.
 
 ## Materials and setup
 
 The entire setup is designed to be affordable and easy to assemble using commonly available components.
 We used a tea box with dimensions of approximately 20 x 15 x 10 cm as the enclosure for the electronics.
 However, any box of similar size can be used - it might be worthwhile to visit the local second-hand store to find a suitable box.
-We disassembled the lid of the box and used a laser cutter to create holes for the buttons, leds, buzzer, and LCD screen (the source file is included in the supplementary files), see figure {numref}`figure {number} <fig_top>`.
+We disassembled the lid of the box and used a laser cutter to create holes for the buttons, leds, buzzer, and LCD screen (the source file is included in the supplementary files), see {numref}`figure {number} <fig_top>`.
 
 ````{figure} 
 :label: fig_top
-```{figure} figures/top.*
+```{figure} figures/front.*
 :label: fig_top1
 
 Top view of the tea box with holes for buttons, leds, buzzer, and LCD screen.
@@ -46,7 +56,7 @@ Top view of the tea box with holes for buttons, leds, buzzer, and LCD screen.
 ```{figure} top2.*
 :label: fig_top2
 
-Top view of the tea box with holes for buttons, leds, buzzer, and LCD screen.
+The schematic for the top of the box used for the laser cutter.
 ```
 ````
 
@@ -87,6 +97,7 @@ Finally, a battery pack and on/off switch are used to power the entire setup, ma
 
 # Implementation
 
-
+- puzzles
+    - ranking task
 
 # Conclusion
