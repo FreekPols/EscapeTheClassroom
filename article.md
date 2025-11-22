@@ -36,9 +36,9 @@ We used a tea box with dimensions of approximately 20 x 15 x 10 cm as the enclos
 However, any box of similar size can be used - it might be worthwhile to visit the local second-hand store to find a suitable box.
 We disassembled the lid of the box and used a laser cutter to create holes for the buttons, leds, buzzer, and LCD screen (the source file is included in the supplementary files), see figure {numref}`figure {number} <fig_top>`.
 
-````{figure}
+````{figure} 
 :label: fig_top
-```{figure} top1.*
+```{figure} figures/top.*
 :label: fig_top1
 
 Top view of the tea box with holes for buttons, leds, buzzer, and LCD screen.
