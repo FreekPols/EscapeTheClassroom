@@ -11,3 +11,6 @@ String hints[4] = {
     "Hint3",
     "Hint4"
 };
+
+unsigned long timeMillis = 30UL * 60UL * 1000UL; // 30 minutes
+unsigned long penaltyMillis = 5UL * 60UL * 1000UL; // 5 minutes

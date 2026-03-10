@@ -16,6 +16,10 @@ int poll_buttons() {
   int v = analogRead(14);
   int hint = analogRead(15);
 
+  if (hint > 512) {
+    return 5;
+  }
+
   if (v < 50) {
     return 0; // no button press
   } else if (v > 200 && v < 300) {
@@ -26,8 +30,6 @@ int poll_buttons() {
     return 1;
   } else if (v > 950) {
     return 4;
-  } else if (hint > 512) {
-    return 5;
   }
   return 0;
 }
@@ -166,7 +168,7 @@ void setup() {
     lcd.setBacklight(255);
     lcd.home();
     lcd.clear();
-    lcd.print("Hello LCD");
+    lcd.print("Code: ");
 
     for (int i = 0; i < 5; i++) {
       setLevelLED(i);
@@ -180,8 +182,16 @@ void setup() {
 
 int n = 0;
 
-String correctCode = "1234";
 String input;
+
+int level = 0;
+
+unsigned long deadline = timeMillis; // set deadline to 30 minutes from start
+
+bool minuteWarning10Given = false;
+bool minuteWarning5Given = false;
+bool minuteWarning1Given = false;
+
 
 void loop() {
   int res = get_debounced_button();
@@ -189,22 +199,75 @@ void loop() {
   if (res > 0) {
     input += String(res);
     lcd.clear();
-    lcd.print(input);
+    lcd.print("Code: "+input);
   }
 
   if (input.length() > 3) {
-    if (input == correctCode) {
-      setLevelLED(1);
+    if (input == codes[level]) {
+      level++;
+
+      if (level > 3) {
+        lcd.clear();
+        lcd.print("You won!");
+        // halt the game, maybe with a fun sound or light show
+        for (int i = 0; i < 5; i++) {
+          setLevelLED(4);
+          buzz(1000, 200);
+          delay(200);
+          setLevelLED(0);
+          delay(200);
+        }
+        while (true) { }
+      }
+      setLevelLED(level + 1);
       lcd.clear();
       lcd.print("Correct!");
-      while (true) {} // halt
+      delay(1000);
+      lcd.clear();
+      lcd.print("Code: ");
+      input = "";
     } else {
       setLevelLED(0);
       buzz(440, 200);
       lcd.clear();
       lcd.print("Wrong code");
+      deadline -= penaltyMillis;
       input = "";
       delay(1000);
+      lcd.clear();
+      lcd.print("Code: ");
     }
   }
+
+  // get millis for timer
+  unsigned long timer = deadline - millis();
+
+  // // print seconds to LCD MM:SS
+  int seconds = (timer / 1000) % 60;
+  int minutes = (timer / 60000) % 60;
+  lcd.setCursor(11, 1);
+  lcd.print(minutes);
+  lcd.print(":");
+  lcd.print(seconds);
+    
+  // check 10, 5 and 1 minute warnings
+  if (timer <= 10 * 60 * 1000 && !minuteWarning10Given) {
+    buzz(880, 500);
+    minuteWarning10Given = true;
+  }
+  if (timer <= 5 * 60 * 1000 && !minuteWarning5Given) {
+    buzz(880, 500);
+    minuteWarning5Given = true;
+  }
+  if (timer <= 1 * 60 * 1000 && !minuteWarning1Given) {
+    buzz(880, 500);
+    minuteWarning1Given = true;
+  }
+
+  // beep ever second in the last 30 seconds
+  if (timer <= 30 * 1000) {
+    buzz(880, 100);
+    delay(900);
+  }
+
 }
